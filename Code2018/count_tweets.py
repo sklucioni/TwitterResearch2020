@@ -1,7 +1,6 @@
 import argparse
-import tweet_counter
+from Code2018 import tweet_counter, writer
 import os
-import writer
 import pickle
 
 def main():

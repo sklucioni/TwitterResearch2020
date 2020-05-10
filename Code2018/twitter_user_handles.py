@@ -12,9 +12,8 @@ candidates listed in names_part_1.txt (copied from the spreadsheet)
 python twitter_user_handles.py ConfigFiles/handles/hailey_part_1.txt
 '''
 import tweepy
-import twitter_hashtag_filter as thf
+from Code2018 import twitter_hashtag_filter as thf
 import sys
-import json
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
@@ -32,7 +31,7 @@ if __name__ == '__main__':
     if 'output_directory' in config:
         out_dir = config['output_directory']
     else:
-        out_dir = '.'
+        out_dir = '..'
 
     if 'output_file' in config:
         out_file = config['output_file']

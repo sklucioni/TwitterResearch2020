@@ -1,7 +1,8 @@
 import argparse
 import os
 import parser
-import writer
+from Code2018 import writer
+
 
 def main():
     argparser = argparse.ArgumentParser(description='Parse json files of tweets and export them to a pickle file.')

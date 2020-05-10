@@ -1,4 +1,4 @@
-# Harvard Twitter Research 2018
+# Harvard Twitter Research 2020
 
 #### A project by Harvard undergraduate students to examine relationships between Twitter and politics. Led by Harvard Professor [Jim Waldo](https://www.seas.harvard.edu/directory/waldo).
 

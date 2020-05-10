@@ -140,7 +140,7 @@ if __name__ == '__main__':
     if 'output_directory' in config:
         out_dir = config['output_directory']
     else:
-        out_dir = '.'
+        out_dir = '..'
     if 'output_file' in config:
         out_file = config['output_file']
     else:

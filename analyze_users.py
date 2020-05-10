@@ -1,7 +1,8 @@
 import argparse
 import user_analyzer
 import os
-import writer
+from Code2018 import writer
+
 
 def main():
     argparser = argparse.ArgumentParser(description='Analyze pickle or json files of tweets and determine how often and when a user tweets.')
