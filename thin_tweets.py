@@ -9,8 +9,8 @@ Convert a set of files in containing lists of tweets in json format to a list of
 a set of directories.
 """
 import os, pickle, json, sys
-import subprocess
 import thinned_tweet_obj as tt
+from general_utilities import file_decompress, file_compress
 
 
 def get_file_list(file_pattern):
@@ -27,35 +27,6 @@ def get_file_list(file_pattern):
             ret_list.append(f)
     return ret_list
 
-def file_prep(start_name):
-    """
-    Uncompress a file if needed. Will handle both compressed and gzipped files. If the file is neither compressed (determined
-    by having a .Z extension) or gzipped (determined by having a .gz extenstion) return the name of the file and do
-    nothing
-    :param start_name: name of the file to be uncompressed or unzipped
-    :return: The name of the uncompressed file, or the name of the original file if it was neither compressed nor
-    gzipped.
-    """
-    if start_name[-2:] == '.Z':
-        print ('Uncompressing ', start_name)
-        subprocess.run(['uncompress', start_name])
-        return start_name[:-2]
-    elif start_name[-3:] == '.gz':
-        print ('Unzipping', start_name)
-        subprocess.run(['gunzip', start_name])
-        return start_name[:-3]
-    else:
-        return start_name
-
-def file_compress(fname):
-    """
-    Gzip a file; this is run when the extraction is done to save space.
-    :param f_name: Name of the file to gzip
-    :return: None
-    """
-    print ('Running gzip on', fname)
-    subprocess.run(['gzip', fname])
-    return
 
 def write_daily_pickles(fname, retweet_dict):
     """
@@ -107,18 +78,18 @@ def reduce_files(write_dir):
     for f in f_list:
         if '.json' not in f:
             continue
-        print (f)
-        fname = file_prep(f)
+        print(f)
+        fname = file_decompress(f)
         thin_list = extract_reduction(fname, tweet_ids, twit_ids)
         print('about to zip file')
         file_compress(fname)
-        out_fname = write_dir + '/'+ fname
+        out_fname = write_dir + '/' + fname
         write_daily_pickles(out_fname, thin_list)
-
 
     twit_out = open(write_dir + '/all_tweeters.pkl', 'wb')
     pickle.dump(twit_ids, twit_out)
     twit_out.close()
+
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
@@ -135,6 +106,3 @@ if __name__ == '__main__':
             os.chdir(d)
             reduce_files(out_dir)
             os.chdir('..')
-
-
-
