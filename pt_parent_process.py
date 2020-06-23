@@ -2,13 +2,13 @@ import subprocess
 import threading
 
 def subprocess_one():
-    subprocess.call(["python", "political_twitter_sample_1.py"])
+    subprocess.run(["python", "political_twitter_sample.py", "Configs/config_file_1.json"])
 
 def subprocess_two():
-    subprocess.call(["python", "political_twitter_sample_2.py"])
+    subprocess.run(["python", "political_twitter_sample.py", "Configs/config_file_2.json"])
 
 def subprocess_three():
-    subprocess.call(["python", "political_twitter_sample_3.py"])
+    subprocess.run(["python", "political_twitter_sample.py", "Configs/config_file_3.json"])
 
 def main():
     while True:
