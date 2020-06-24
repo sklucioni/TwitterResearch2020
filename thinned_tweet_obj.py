@@ -9,6 +9,7 @@ Objects used to store a reduced set of information about a tweet. The tweet obje
 storing the tweet id, text, and hashtags. If the tweet is a quote or a retweet, a tweet object of the tweet
 that is quoted or retweeted is also stored. A user object is also stored, showing who tweeted this.
 """
+import random
 
 class tweet(object):
     """
@@ -16,29 +17,42 @@ class tweet(object):
     a user object, and different information for retweets, quotes, and replies.
     """
     def __init__(self, js_tweet):
-        self.tweet_id = js_tweet['id_str']
-        self.text = js_tweet['text']
+        if 'id_str' in js_tweet:
+            self.tweet_id = js_tweet['id_str']
+        else:
+            self.tweet_id = 'unknown' + str(random.randint(1,1000000))
+        if 'text' in js_tweet:
+            self.text = js_tweet['text']
+        else:
+            self.text = ''
         if 'entities' in js_tweet:
             self.hashtags = []
             for h in js_tweet['entities']['hashtags']:
                 self.hashtags.append(h['text'])
             self.mentions = js_tweet['entities']['user_mentions']
-        self.user = tweet_user(js_tweet['user'])
+        if 'user' in js_tweet:
+            self.user = tweet_user(js_tweet['user'])
+        else:
+            self.user = None
         
         if 'retweeted_status' in js_tweet:
             self.retweet = tweet(js_tweet['retweeted_status'])
             self.retweet_count = js_tweet['retweet_count']
         else:
             self.is_retweet = ''
-        if js_tweet['in_reply_to_status_id_str'] != None :
+        if 'in_reply_to_status_id_str' in js_tweet and js_tweet['in_reply_to_status_id_str'] != None :
             self.in_reply = t_reply(js_tweet)
         else:
             self.in_reply = ''
-        if js_tweet['is_quote_status'] and 'quoted_status' in js_tweet:
+        if 'is_quoted_status' in js_tweet and \
+                js_tweet['is_quote_status'] :
             self.quote = tweet(js_tweet['quoted_status'])
         else:
             self.quote = None
-        self.quote_status = js_tweet['is_quote_status']
+        if 'is_quote_status' in js_tweet:
+            self.quote_status = js_tweet['is_quote_status']
+        else:
+            self.quote_status = None
 
 class tweet_user(object):
     """
