@@ -77,7 +77,6 @@ class MyListener(StreamListener):
             if self.count < 1000:
                 self.count += 1
             else:
-                print('writing outfile')
                 self.count = 1
                 self.write_file()
                 if self.check_new_date():
