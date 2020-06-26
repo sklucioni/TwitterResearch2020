@@ -2,8 +2,9 @@ import tweepy
 from tweepy import OAuthHandler
 from tweepy import Stream
 from tweepy.streaming import StreamListener
-import os, sys, json, pickle
+import os, sys, json, pickle, random
 from datetime import date
+import time
 import thinned_tweet_obj as tt
 
 def load_dict(auth_d, l):
@@ -81,6 +82,7 @@ class MyListener(StreamListener):
                 self.write_file()
                 if self.check_new_date():
                     self.use_file()
+                time.sleep(60 * random.randint(1,120))
             return True
         except BaseException as e:
             print("Error on_data: %s" % str(e))
@@ -97,7 +99,7 @@ class MyListener(StreamListener):
             fin.close()
         else:
             cur_l = []
-        cur_l.append(self.out_buffer)
+        cur_l.extend(self.out_buffer)
         fout = open(self.outname, 'wb')
         pickle.dump(cur_l, fout)
         fout.close()
@@ -166,5 +168,6 @@ if __name__ == '__main__':
         except KeyboardInterrupt:
             ml.write_file()
             sys.exit(0)
+
         except:
             pass
