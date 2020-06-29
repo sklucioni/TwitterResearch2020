@@ -1,3 +1,16 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+@author: jimwaldo
+
+Scrape twitter and store thinned tweets (as defined in thinned_tweet_obj.py) in a list. The
+tweets are filtered by a set of strings that are loaded from a configuration file, as are the
+input and output directories. Rather than scraping all of the tweets (which given the standard
+access is already only a 1% sampling of twitter) the tweets are limited by sleeping after the
+collection of 1000 tweets by from 1 to 120 minutes, randomly determined.
+
+"""
+
 import tweepy
 from tweepy import OAuthHandler
 from tweepy import Stream
