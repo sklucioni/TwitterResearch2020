@@ -53,6 +53,67 @@ class tweet(object):
             self.quote_status = js_tweet['is_quote_status']
         else:
             self.quote_status = None
+            
+    def get_user_id(self):
+        """
+        Convenience function: return the id of the user who is associated with this tweet
+        :return: The user_id, as a string, for the user associated with this tweet
+        """
+        if self.user != None:
+            return self.user.user_id
+        else:
+            return None
+
+    def get_user_name(self):
+        """
+        Convenience function: return the screen name of the user associated with this tweet
+        :return: A string with the screen name of the person associated with this tweet
+        """
+        if self.user is None:
+            return None
+        else:
+            return self.user.screen_name
+        
+    def is_retweet(self):
+        """
+        Convenience function: return whether or not this tweet is a retweet
+        :return: True if the tweet is a retweet; False otherwise
+        """
+        if self.is_retweet() != '':
+            return True
+        else:
+            return False
+
+    def get_retweet(self):
+        """
+        Convenience function: if the tweet in question is a retweet, returns the retweeted tweet
+        :return: the tweet that was retweeted; None if the tweet is not a retweet
+        """
+        if self.is_retweet():
+            return self.retweet
+        else:
+            return None
+
+    def is_reply(self):
+        """
+        Convenience function: returns whether or not this tweet is in reply to another tweet
+        :return: True if this tweet is in reply to another tweet; False otherwise
+        """
+        if self.in_reply is None:
+            return False
+        else:
+            return True
+
+    def get_reply(self):
+        """
+        Convenience function: if this tweet is in reply to another tweet, return the tweet to which it is a reply
+        :return: The tweet this tweet is in reply to; None if this tweet is not a reply
+        """
+        if self.is_reply():
+            return self.in_reply
+        else:
+            return None
+    
 
 class tweet_user(object):
     """
