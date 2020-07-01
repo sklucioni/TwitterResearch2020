@@ -79,7 +79,7 @@ class tweet(object):
         Convenience function: return whether or not this tweet is a retweet
         :return: True if the tweet is a retweet; False otherwise
         """
-        if self.is_retweet() != '':
+        if self.is_retweet != '':
             return True
         else:
             return False
