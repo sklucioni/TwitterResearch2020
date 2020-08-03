@@ -95,7 +95,7 @@ class MyListener(StreamListener):
                 self.write_file()
                 if self.check_new_date():
                     self.use_file()
-                time.sleep(60 * random.randint(1,120))
+                time.sleep(60 * random.randint(1,60))
             return True
         except BaseException as e:
             print("Error on_data: %s" % str(e))

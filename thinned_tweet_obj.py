@@ -99,7 +99,7 @@ class tweet(object):
         Convenience function: returns whether or not this tweet is in reply to another tweet
         :return: True if this tweet is in reply to another tweet; False otherwise
         """
-        if self.in_reply is None:
+        if self.in_reply == '':
             return False
         else:
             return True
