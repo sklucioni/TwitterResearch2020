@@ -1,5 +1,9 @@
 **Table of Contents for Memos**
 
+* lucioni-200809.md    Reduced vs. full data statistical analysis
+
+An investigation into the statistical similarities between the reduced and full data. A handful of t-tests are run, but smarter criteria should be determined and then tests should be re-run.
+
 * waldo181124.md    Extracting a subset of data from all the tweets
 
 An early attempt at describing the information we will extract from a tweet. Needs to be updated or replaced to show the information that we now extract as a thinned_tweet.
