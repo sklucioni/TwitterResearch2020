@@ -2,7 +2,7 @@
 
 This memo corresponds with `PythonNotebooks/thinned_data_statistical_analysis.ipynb`.
 
-#Thinned Data Statistical Analysis
+# Thinned Data Statistical Analysis
 
 We started collecting about 20x fewer tweets in the middle of 06/25 in order to reduce file size and clumsiness. The original data only captures about 1% of Twitter traffic. We want to test and see if the reduced files are statistically different from the larger data set.
 
@@ -29,13 +29,13 @@ $$H_0 : \mu_1 = \mu_2$$
 $$H_1 : \mu_1 \neq \mu_2$$
 The null states that the population means are equal, and the alternative states that the population means are different.
 
-##Constructing Subgroups
+## Constructing Subgroups
 
 First, we need to construct subgroups for each day of data. For now, we will construct approximately 1440 groups which correlates to about one group a minute. I don't think this is a satisfactory criteria because we do not have the timestamps for tweets. We should determine how to partition a day into meaningful subgroups.
 
 **Note:** The analysis done in this section of the notebook uncovers an error with the `is_reply` field. It is always returning TRUE.
 
-##Performing t-tests
+## Performing t-tests
 
 We run X t-tests in this section. First, we look at the ratio of different types of tweets. This includes: retweets, replies, and quotes. The replies t-test is not meaningful due to the `is_reply` field error. Otherwise, we can conclude that the ratio of retweets are not statistically different between the reduced and larger data (this is good!). We do reject the null for the ratio of quotes, instead, concluding that the ratio of quotes are statistically different between the reduced and larger data (this is not great, but remember that our subgrouping isn't chosen very wisely). When we re-run the t-test's with fewer subgroups, we find that with groups = 181, we can accept the null in all cases.
 
@@ -44,7 +44,7 @@ Now, let's look at the actual words in a tweet to determine if the data is stati
 We can conclude that the ratio of stopwords are not statistically different between the reduced and larger data (this is good!). This may be a good metric to determine that the tweets themselves are not statistically different. However, notice that we reject the null for the ratio of times Trump related words appear and tweets that mention Trump, concluding that these are statistically different between the reduced and larger data. We also conclude that the ratio of times Biden related words appear and the ratio of tweets that mention Biden are statistically different between the reduced and larger data.
 If we reduce the amount of groups (increasing the number of tweets per group), we do not reject the null and can then claim that the data is not statistically different. This raises a question on how we wish to determine subgroups. Specifically, with groups = 45, we can accept the null in all cases.
 
-##Conclusion
+## Conclusion
 
 After performing several t-tests to compare the reduced and larger data sets of combined, thinned tweets, we can make several conclusions. First, we can accept the null hypothesis and conclude that the data sets are not statistically different for the ratio of retweets. We must reject this conclusion for the ratio of quotes. We cannot make any conclusion for the ratio of replies due to an error with the is_reply field. It would be worthwhile to rerun the t-tests with a more thoughtful choice for subgroups.
 
