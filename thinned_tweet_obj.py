@@ -53,6 +53,14 @@ class tweet(object):
             self.quote_status = js_tweet['is_quote_status']
         else:
             self.quote_status = None
+        if 'favorited' in js_tweet:
+            self.favorited = js_tweet['favorited']
+        else:
+            self.favorited = None
+        if 'favorite_count' in js_tweet:
+            self.favorite_count = js_tweet['favorite_count']
+        else:
+            self.favorite_count = 0
             
     def get_user_id(self):
         """
@@ -113,7 +121,15 @@ class tweet(object):
             return self.in_reply
         else:
             return None
-    
+
+    def get_favorited(self):
+        if self.favorited == True:
+            return True
+        else:
+            return False
+
+    def get_favorite_count(self):
+        return self.favorite_count
 
 class tweet_user(object):
     """
