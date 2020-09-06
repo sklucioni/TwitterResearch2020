@@ -123,7 +123,7 @@ class tweet(object):
             return None
 
     def get_favorited(self):
-        if self.favorited == True:
+        if self.favorited is True:
             return True
         else:
             return False
@@ -143,6 +143,8 @@ class tweet_user(object):
         self.followers_count = js_user['followers_count']
         self.friends_count = js_user['friends_count']
         self.verified = js_user['verified']
+        self.total_tweets = js_user['statuses_count']
+        self.account_created = js_user['created_at']
 
 class t_reply(object):
     """
