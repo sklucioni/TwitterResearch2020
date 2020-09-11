@@ -19,3 +19,7 @@ An overview of how the repository file structure is organized. Some of this may 
 * waldo180928.md    Ground Rules
 
 Some rules of the road for the research group. Probably needs to be updated.
+
+* waldo-200911.md    Github conventions
+
+Some conventions for using git that will keep us from interferring with each other
