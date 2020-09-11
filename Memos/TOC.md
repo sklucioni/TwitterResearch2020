@@ -1,5 +1,9 @@
 **Table of Contents for Memos**
 
+* lucioni-200907.md    Google Drive API Quickstart
+
+Explains updates made to `gdrive_quickstart.py` and how to use the Google Drive API.
+
 * lucioni-200809.md    Reduced vs. full data statistical analysis
 
 An investigation into the statistical similarities between the reduced and full data. A handful of t-tests are run, but smarter criteria should be determined and then tests should be re-run.
