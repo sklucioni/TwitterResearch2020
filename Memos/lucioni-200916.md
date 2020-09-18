@@ -69,7 +69,23 @@ For each of the quantitative measures (such as avg. tweet wordcount, avg. number
 
 If we look at the distribution of these metrics between the large, small, and micro datasets (e.g. through a boxplot), we notice that they look pretty similar, so we expect to find pretty linear Q-Q plots. This would be good news and we could conclude similarity!
 
+This is a similar approach to Leetaru's correlation test, but modified for the data we have. I think this is a solid choice to test our data similarity.
+
 ## Bootstrap and Pearson's R (Qualitative / Categorical Variables)
 
+Since proportion tests and hypothesis tests in general are very sensitive to our large data, I think we should stay away from conclusions based on hypothesis tests. I also think this approach is less legitimate in comparison to the Q-Q plot, and I think we should mainly use the Q-Q plot analysis. However, I will lay out my idea for testing the qualitative variables.
 
-look into hyp corrections - tuekkey
+Leetaru's analysis looks at three data points a day (number of appearances of his large, small, and micro keywords) and compares them all over the course of 6 years. In order to mimic this range of data, we can construct our own data through resampling. I propose creating x > 30 bootstrapped samples *per* large, small, and micro datasets for each day of data that we have. So for one day of data, we would draw 3x bootstrapped samples of size n_large, n_small, and n_micro and calculate the desired proportions for each sample. Let each of the x proportions make up a sample called "sample_[large/small/micro]_[day]". After doing this for all *D* days, join all of the samples into "sample_[large/small/micro]". We can now plot samples_small vs. samples_large and samples_micro vs. samples_large. Then, we will calculate the correlation coefficient. If it is close to 1, we can conclude that there is a positive correlation between the two compared sizes. If the correlation coefficient is close to 1, we can conclude that the datasets are similar.
+
+I am hesitant to use this method because we are basically constructing our data so that it is correlated. Also, bootstrap samples are typically equal to the original sample size or smaller. It is not usually larger so we would have to be suspicious of our conclusions.
+
+# Conclusion
+
+In order to conclude that our data is representative of the larger sample, we will look at Q-Q plots comparing the distribution of the following quantitative variables:
+- tweet **wordcount**
+- number of **stopwords** per tweet
+- **proportion of stopwords** per tweet
+- number of **political** related words per tweet
+  - words such as "Biden", "Trump", and campaign related words.
+
+I will run this analysis on the data we have collected thus far as well as create a Q-Q plot analysis tool.
