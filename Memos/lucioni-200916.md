@@ -89,3 +89,5 @@ In order to conclude that our data is representative of the larger sample, we wi
   - words such as "Biden", "Trump", and campaign related words.
 
 I will run this analysis on the data we have collected thus far as well as create a Q-Q plot analysis tool.
+
+Summary of this memo with visuals: https://docs.google.com/presentation/d/1Ki9uMsDPQNjhxKxexdrZSNkJfCoyb5N855NwqgiO994/edit?usp=sharing
