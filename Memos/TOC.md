@@ -1,5 +1,9 @@
 **Table of Contents for Memos**
 
+* metropolitansky-200925.md    Updating the scraper's account filters
+
+Outlines and explains changes to the list of accounts the scraper is filtering for.
+
 * lucioni-200907.md    Google Drive API Quickstart
 
 Explains updates made to `gdrive_quickstart.py` and how to use the Google Drive API.
