@@ -39,7 +39,7 @@ class tweet(object):
             self.retweet = tweet(js_tweet['retweeted_status'])
             self.retweet_count = js_tweet['retweet_count']
         else:
-            self.is_retweet = ''
+            self.retweet = ''
         if 'in_reply_to_status_id_str' in js_tweet and js_tweet['in_reply_to_status_id_str'] != None :
             self.in_reply = t_reply(js_tweet)
         else:
@@ -87,7 +87,7 @@ class tweet(object):
         Convenience function: return whether or not this tweet is a retweet
         :return: True if the tweet is a retweet; False otherwise
         """
-        if self.is_retweet != '':
+        if self.retweet != '':
             return True
         else:
             return False
@@ -97,10 +97,10 @@ class tweet(object):
         Convenience function: if the tweet in question is a retweet, returns the retweeted tweet
         :return: the tweet that was retweeted; None if the tweet is not a retweet
         """
-        if self.is_retweet():
-            return self.retweet
-        else:
+        if self.retweet is '':
             return None
+        else:
+            return self.retweet
 
     def is_reply(self):
         """
