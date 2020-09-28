@@ -4,6 +4,10 @@
 
 Outlines and explains changes to the list of accounts the scraper is filtering for.
 
+* lucioni-200916.md    Statistical analysis conclusion
+
+Takes another look at the statistical analysis of our data and proposes two new methods to determine statistical similarity.
+
 * lucioni-200907.md    Google Drive API Quickstart
 
 Explains updates made to `gdrive_quickstart.py` and how to use the Google Drive API.
