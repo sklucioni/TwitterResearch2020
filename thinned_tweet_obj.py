@@ -21,7 +21,9 @@ class tweet(object):
             self.tweet_id = js_tweet['id_str']
         else:
             self.tweet_id = 'unknown' + str(random.randint(1,1000000))
-        if 'text' in js_tweet:
+        if 'truncated' in js_tweet and js_tweet['truncated']:
+            text = js_tweet['extended_tweet']['full_text']
+        elif 'text' in js_tweet:
             self.text = js_tweet['text']
         else:
             self.text = ''
@@ -82,7 +84,7 @@ class tweet(object):
         else:
             return self.user.screen_name
         
-    def is_retweet(self):
+    def be_retweet(self):
         """
         Convenience function: return whether or not this tweet is a retweet
         :return: True if the tweet is a retweet; False otherwise
