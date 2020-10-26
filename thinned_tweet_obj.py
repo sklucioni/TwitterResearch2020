@@ -22,7 +22,7 @@ class tweet(object):
         else:
             self.tweet_id = 'unknown' + str(random.randint(1,1000000))
         if 'truncated' in js_tweet and js_tweet['truncated']:
-            text = js_tweet['extended_tweet']['full_text']
+            self.text = js_tweet['extended_tweet']['full_text']
         elif 'text' in js_tweet:
             self.text = js_tweet['text']
         else:
